@@ -19,27 +19,7 @@
 
 / {
     behaviors {
-        // Hold-tap for home row mods
-        ht: ht {
-            display-name = "Home Row Mod";
-            compatible = "zmk,behavior-hold-tap";
-            #binding-cells = <2>;
-            flavor = "balanced";
-            tapping-term-ms = <200>;
-            quick-tap-ms = <200>;
-            bindings = <&kp>, <&kp>;
-        };
 
-        // Layer-tap (hold=MO, tap=KP)
-        lt: lt {
-            display-name = "Layer Tap";
-            compatible = "zmk,behavior-hold-tap";
-            #binding-cells = <2>;
-            flavor = "balanced";
-            tapping-term-ms = <200>;
-            quick-tap-ms = <200>;
-            bindings = <&mo>, <&kp>;
-        };
 
         // --- Tap Dances ---
 
@@ -154,7 +134,7 @@
     &kp T    &kp R &lt 2 E  &kp W &td6    &kp Y    &kp U    &kp I    &kp O &lt 3 P
 //      left home                  right home
 //  G/sgui  F/gui  D/alt  S/ctrl  A/sft  H/lt4  J/rgui  K/ralt  L/rctrl '/rsft
-    &ht LGUI G &ht LGUI F &ht LALT D &ht LCTRL S &ht LSHFT A   &lt 4 H  &ht RGUI J &ht RALT K &ht RCTRL L &ht RSHFT SQT
+    &mt LGUI G &mt LGUI F &mt LALT D &mt LCTRL S &mt LSHFT A   &lt 4 H  &mt RGUI J &mt RALT K &mt RCTRL L &mt RSHFT SQT
 //      left bottom                 right bottom
 //  B/lt5  V/lt5  C/lt4  X       Z       N/lt5  M/lt4  ,       .       TD(5)
     &lt 5 B  &lt 5 V &lt 4 C  &kp X  &kp Z   &lt 5 N  &lt 4 M &kp COMMA &kp DOT &td5
@@ -188,7 +168,7 @@
 //   WH_U  TRNS  TRNS  TRNS  PGUP     WH_U  HOME  UP    END   PGUP
     &none &trans &trans &trans &kp PG_UP   &none &kp HOME &kp UP &kp END &kp PG_UP
 //   WH_D  TRNS  TRNS  TRNS  mt(PGDN)  WH_D  LEFT  DOWN  RIGHT PGDN
-    &none &trans &trans &trans &ht LSHFT PG_DN   &none &kp LEFT &kp DOWN &kp RIGHT &kp PG_DN
+    &none &trans &trans &trans &mt LSHFT PG_DN   &none &kp LEFT &kp DOWN &kp RIGHT &kp PG_DN
 //   TRNS  TRNS  TRNS  TRNS  TRNS     TD12  [     DOWN  ]     LGUI
     &trans &trans &trans &trans &trans   &td12 &kp LBKT &kp DOWN &kp RBKT &kp LGUI
 //   DF0   TD12   TAB   TD12    TRNS   TD12   LCTRL  TRNS
@@ -205,7 +185,7 @@
 //   5   4   3   2   1    6   7   8   9   0
     &kp N5 &kp N4 &kp N3 &kp N2 &kp N1   &kp N6 &kp N7 &kp N8 &kp N9 &kp N0
 //   BSPC mtGui(]) mtAlt([) mtCtrl(=) mtSft(-)  KP*  4   5   6   +
-    &kp BSPC &ht LGUI RBKT &ht LALT LBKT &ht LCTRL EQUAL &ht LSHFT MINUS   &kp KP_MULTIPLY &kp N4 &kp N5 &kp N6 &kp KP_PLUS
+    &kp BSPC &mt LGUI RBKT &mt LALT LBKT &mt LCTRL EQUAL &mt LSHFT MINUS   &kp KP_MULTIPLY &kp N4 &kp N5 &kp N6 &kp KP_PLUS
 //   TRNS   <     -   SPACE TRNS    KP/  lt4(1)  2   3   TD7
     &trans &kp LS(DOT) &kp MINUS &kp SPACE &trans   &kp KP_DIVIDE &lt 4 N1 &kp N2 &kp N3 &td7
 //   DF0   TO0   DEL  LOCK    TRNS   TD2   KP.  0
@@ -237,7 +217,7 @@
 //   F5   F4   F3   F2   TD8     F6   F7   F8   F9   F10
     &kp F5 &kp F4 &kp F3 &kp F2 &td8   &kp F6 &kp F7 &kp F8 &kp F9 &kp F10
 //   TRNS mtGui(]) mtAlt([) mtCtrl(F12) mtSft(F11)  TRNS BSPC BSPC ;   :
-    &trans &ht LGUI RBKT &ht LALT LBKT &ht LCTRL F12 &ht LSHFT F11       &trans &kp BSPC &kp BSPC &kp SEMI &kp LS(SEMI)
+    &trans &mt LGUI RBKT &mt LALT LBKT &mt LCTRL F12 &mt LSHFT F11       &trans &kp BSPC &kp BSPC &kp SEMI &kp LS(SEMI)
 //   `    TRNS TRNS BRIU BRID     TRNS DEL TRNS TRNS ENTER
     &kp GRAVE &trans &trans &kp C_BRI_UP &kp C_BRI_DN   &trans &kp DEL &trans &trans &kp ENTER
 //   DF0  TAB  VOLU VOLD     TRNS  BTN3  ENTER ENTER
