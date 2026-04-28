@@ -53,5 +53,15 @@ endif # LEFT
 config ZMK_SPLIT
     default y
 
-# ZMK_SYNC_* not available in ZMK v0.3 — removed
+config ZMK_SPLIT_PERIPHERAL_SYNC_STATE
+    default y
+
+config ZMK_SYNC_OUTPUT
+    default y
+
+config ZMK_SYNC_LAYER
+    default y
+
+config ZMK_SYNC_BATTERY
+    default y
 
