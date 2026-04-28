@@ -1,10 +1,10 @@
 manifest:
   remotes:
-    - name: klesh
-      url-base: https://github.com/klesh
+    - name: zmkfirmware
+      url-base: https://github.com/zmkfirmware
   projects:
     - name: zmk
-      remote: klesh
+      remote: zmkfirmware
       revision: main
       import: app/west.yml
   self:
