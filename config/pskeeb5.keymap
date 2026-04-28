@@ -104,7 +104,7 @@
         // BTN1 + BTN2 = BTN3 - positions shifted by thumb remap, disabled for now
         combo_mclk {
             timeout-ms = <50>;
-            key-positions = <30 34>;
+            key-positions = <33 34>;
             bindings = <&mkp MCLK>;
             layers = <7>;
         };
@@ -140,7 +140,7 @@
     &lt 5 B  &lt 5 V &lt 4 C  &kp X  &kp Z   &lt 5 N  &lt 4 M &kp COMMA &kp DOT &td5
 //      left thumb (4 keys)         right thumb (4 keys)
 //   DF0    lt2(TAB)  USER00 lt7(`)  MUTE   BTN1    lt3(-)  TD(0)
-    &none  &none  &to 0  &lt 2 TAB   &mkp LCLK  &lt 3 MINUS  &td0  &kp C_MUTE
+    &to 0  &lt 2 TAB  &none  &none   &kp C_MUTE  &mkp LCLK  &lt 3 MINUS  &td0
             >;
             sensor-bindings = <&inc_dec_kp C_VOL_DN C_VOL_UP &inc_dec_kp C_VOL_UP C_VOL_DN>;
         };
@@ -156,7 +156,7 @@
 //   B   V   C   X   Z    N   M   ,   .   /
     &kp B &kp V &kp C &kp X &kp Z   &kp N &kp M &kp COMMA &kp DOT &kp FSLH
 //   DF0  TT(3)  MO1   LGUI   TRNS  ENTER  MO2   TT(2)
-    &none  &none  &to 0  &tog 3   &kp ENTER  &mo 2  &tog 2  &trans
+    &to 0  &tog 3  &mo 1  &kp LGUI   &trans  &kp ENTER  &mo 2  &tog 2
             >;
             sensor-bindings = <&inc_dec_kp C_VOL_DN C_VOL_UP &inc_dec_kp LEFT RIGHT>;
         };
@@ -172,7 +172,7 @@
 //   TRNS  TRNS  TRNS  TRNS  TRNS     TD12  [     DOWN  ]     LGUI
     &trans &trans &trans &trans &trans   &td12 &kp LBKT &kp DOWN &kp RBKT &kp LGUI
 //   DF0   TD12   TAB   TD12    TRNS   TD12   LCTRL  TRNS
-    &none  &none  &to 0  &td12   &td12  &kp LCTRL  &trans  &trans
+    &to 0  &td12  &kp TAB  &td12   &trans  &td12  &kp LCTRL  &trans
             >;
             // Vial: Enc0=BRIU/BRID, Enc1=LEFT/RIGHT
             sensor-bindings = <&inc_dec_kp C_BRI_UP C_BRI_DN &inc_dec_kp LEFT RIGHT>;
@@ -189,7 +189,7 @@
 //   TRNS   <     -   SPACE TRNS    KP/  lt4(1)  2   3   TD7
     &trans &kp LS(DOT) &kp MINUS &kp SPACE &trans   &kp KP_DIVIDE &lt 4 N1 &kp N2 &kp N3 &td7
 //   DF0   TO0   DEL  LOCK    TRNS   TD2   KP.  0
-    &none  &none  &to 0  &to 0   &td2  &kp KP_DOT  &kp N0  &trans
+    &to 0  &to 0  &kp DEL  &none   &trans  &td2  &kp KP_DOT  &kp N0
             >;
             sensor-bindings = <&inc_dec_kp C_VOL_DN C_VOL_UP &inc_dec_kp C_VOL_DN C_VOL_UP>;
         };
@@ -205,7 +205,7 @@
 //   TRNS TRNS TRNS TRNS TRNS     TRNS TRNS DEL TRNS BSPC
     &trans &trans &trans &trans &trans   &trans &trans &kp DEL &trans &kp BSPC
 //   DF0  BSPC  TRNS TRNS     TRNS  BTN3  BSPC DEL
-    &none  &none  &to 0  &kp BSPC   &mkp MCLK  &kp BSPC  &kp DEL  &trans
+    &to 0  &kp BSPC  &trans  &trans   &trans  &mkp MCLK  &kp BSPC  &kp DEL
             >;
             sensor-bindings = <&inc_dec_kp C_VOL_DN C_VOL_UP &inc_dec_kp LEFT RIGHT>;
         };
@@ -221,7 +221,7 @@
 //   `    TRNS TRNS BRIU BRID     TRNS DEL TRNS TRNS ENTER
     &kp GRAVE &trans &trans &kp C_BRI_UP &kp C_BRI_DN   &trans &kp DEL &trans &trans &kp ENTER
 //   DF0  TAB  VOLU VOLD     TRNS  BTN3  ENTER ENTER
-    &none  &none  &to 0  &kp TAB   &mkp MCLK  &kp ENTER  &kp ENTER  &trans
+    &to 0  &kp TAB  &kp C_VOL_UP  &kp C_VOL_DN   &trans  &mkp MCLK  &kp ENTER  &kp ENTER
             >;
             sensor-bindings = <&inc_dec_kp C_VOL_DN C_VOL_UP &inc_dec_kp C_VOL_DN C_VOL_UP>;
         };
@@ -237,7 +237,7 @@
 //   F   E   D   C   B     G   H   I   J   K
     &kp F &kp E &kp D &kp C &kp B   &kp G &kp H &kp I &kp J &kp K
 //   DF0  3   2   4     TRNS  7   5   6
-    &none  &none  &to 0  &kp N3   &kp N7  &kp N5  &kp N6  &trans
+    &to 0  &kp N3  &kp N2  &kp N4   &trans  &kp N7  &kp N5  &kp N6
             >;
             sensor-bindings = <&inc_dec_kp C_VOL_DN C_VOL_UP &inc_dec_kp LEFT RIGHT>;
         };
@@ -253,7 +253,7 @@
 //   TRNS TRNS TRNS TRNS TRNS     TRNS BTN3 TRNS TRNS TRNS
     &trans &trans &trans &trans &trans   &trans &mkp MCLK &trans &trans &trans
 //   DF0  TRNS TRNS TRNS     TRNS TRNS USER05 BTN2
-    &none  &none  &to 0  &trans   &trans  &none  &mkp RCLK  &trans
+    &to 0  &trans  &trans  &trans   &trans  &trans  &none  &mkp RCLK
             >;
             sensor-bindings = <&inc_dec_kp C_VOL_DN C_VOL_UP &inc_dec_kp LEFT RIGHT>;
         };
