@@ -108,21 +108,7 @@
 
         // --- Encoder behaviors ---
 
-        // Rotary encoder: mouse scroll
-        rot_msc: rot_msc {
-            compatible = "zmk,behavior-sensor-rotate-var";
-            #sensor-binding-cells = <2>;
-            bindings = <&msc>, <&msc>;
-            tap-ms = <20>;
-        };
 
-        // Rotary encoder: mouse button press
-        rot_btn: rot_btn {
-            compatible = "zmk,behavior-sensor-rotate-var";
-            #sensor-binding-cells = <2>;
-            bindings = <&mkp>, <&mkp>;
-            tap-ms = <20>;
-        };
     };
 
     // --- Combos ---
@@ -176,7 +162,7 @@
 //   DF0    lt2(TAB)  USER00 lt7(`)  MUTE   BTN1    lt3(-)  TD(0)
     &none  &none  &to 0  &lt 2 TAB   &mkp LCLK  &lt 3 MINUS  &td0  &kp C_MUTE
             >;
-            sensor-bindings = <&rot_msc SCRL_DN SCRL_UP &inc_dec_kp C_VOL_UP C_VOL_DN>;
+            sensor-bindings = <&inc_dec_kp C_VOL_DN C_VOL_UP &inc_dec_kp C_VOL_UP C_VOL_DN>;
         };
 
         // Layer 1 — Numbers + Navigation
@@ -257,7 +243,7 @@
 //   DF0  TAB  VOLU VOLD     TRNS  BTN3  ENTER ENTER
     &none  &none  &to 0  &kp TAB   &mkp MCLK  &kp ENTER  &kp ENTER  &trans
             >;
-            sensor-bindings = <&rot_btn MCLK MCLK &rot_btn RCLK MCLK>;
+            sensor-bindings = <&inc_dec_kp C_VOL_DN C_VOL_UP &inc_dec_kp C_VOL_DN C_VOL_UP>;
         };
 
         // Layer 6 — Game layer (FEDCB left, GHIJK right)
