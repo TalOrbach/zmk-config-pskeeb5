@@ -1,11 +1,13 @@
 manifest:
   remotes:
+    - name: zmkfirmware
+      url-base: https://github.com/zmkfirmware
     - name: klesh
       url-base: https://github.com/klesh
   projects:
     - name: zmk
-      remote: klesh
-      revision: b2d37fb44958f28e2bb711b0ef12ea74b87d8bb0
+      remote: zmkfirmware
+      revision: v0.3
       import: app/west.yml
     - name: kb_zmk_ps2_mouse_trackpoint_driver
       remote: klesh
