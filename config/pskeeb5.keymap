@@ -186,9 +186,9 @@
             display-name = "MouseNav";
             bindings = <
 //   WH_U  TRNS  TRNS  TRNS  PGUP     WH_U  HOME  UP    END   PGUP
-    &msc SCRL_UP &trans &trans &trans &kp PG_UP   &msc SCRL_UP &kp HOME &kp UP &kp END &kp PG_UP
+    &none &trans &trans &trans &kp PG_UP   &none &kp HOME &kp UP &kp END &kp PG_UP
 //   WH_D  TRNS  TRNS  TRNS  mt(PGDN)  WH_D  LEFT  DOWN  RIGHT PGDN
-    &msc SCRL_DN &trans &trans &trans &ht LSHFT PG_DN   &msc SCRL_DN &kp LEFT &kp DOWN &kp RIGHT &kp PG_DN
+    &none &trans &trans &trans &ht LSHFT PG_DN   &none &kp LEFT &kp DOWN &kp RIGHT &kp PG_DN
 //   TRNS  TRNS  TRNS  TRNS  TRNS     TD12  [     DOWN  ]     LGUI
     &trans &trans &trans &trans &trans   &td12 &kp LBKT &kp DOWN &kp RBKT &kp LGUI
 //   DF0   TD12   TAB   TD12    TRNS   TD12   LCTRL  TRNS
@@ -267,7 +267,7 @@
             display-name = "Mouse2";
             bindings = <
 //   TRNS TRNS TRNS TRNS GRAVE     BTN2  WH_L TRNS TRNS TRNS
-    &trans &trans &trans &trans &kp GRAVE   &mkp RCLK &msc SCRL_LEFT &trans &trans &trans
+    &trans &trans &trans &trans &kp GRAVE   &mkp RCLK &none &trans &trans &trans
 //   TRNS TRNS TRNS TRNS TRNS     TRNS TRNS TRNS TRNS TRNS
     &trans &trans &trans &trans &trans   &trans &trans &trans &trans &trans
 //   TRNS TRNS TRNS TRNS TRNS     TRNS BTN3 TRNS TRNS TRNS
