@@ -215,7 +215,7 @@ TAP_DANCES = {
     "TD(0)": "&td_space_arrows_macro",
     "TD(2)": "&td_enter_equal",
     "TD(5)": "&td_slash_backslash",
-    "TD(6)": "&q_esc",
+    "TD(6)": "&td_key_ht ESC Q",
     "TD(7)": "&td_key_ht COMMA MINUS",
     "TD(8)": "&td_key_ht ESC F1",
     "TD(12)": "&layer_lock_2",
@@ -427,16 +427,6 @@ def render(vil: dict) -> str:
             tapping-term-ms = <200>;
             quick-tap-ms = <120>;
             bindings = <&kp>, <&kp>;
-        };
-
-        q_esc: q_esc_hold_tap {
-            compatible = "zmk,behavior-hold-tap";
-            #binding-cells = <0>;
-            display-name = "Q / Escape";
-            flavor = "balanced";
-            tapping-term-ms = <200>;
-            quick-tap-ms = <120>;
-            bindings = <&kp ESC>, <&kp Q>;
         };
 
         cmdtab_ht: cmd_tab_hold_tap {

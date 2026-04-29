@@ -50,16 +50,6 @@
             bindings = <&kp>, <&kp>;
         };
 
-        q_esc: q_esc_hold_tap {
-            compatible = "zmk,behavior-hold-tap";
-            #binding-cells = <0>;
-            display-name = "Q / Escape";
-            flavor = "balanced";
-            tapping-term-ms = <200>;
-            quick-tap-ms = <120>;
-            bindings = <&kp ESC>, <&kp Q>;
-        };
-
         cmdtab_ht: cmd_tab_hold_tap {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
@@ -174,7 +164,7 @@
         base_layer {
             display-name = "Base";
             bindings = <
-                &q_esc            &kp W             &lt_qmk 2 E       &kp R             &kp T             &kp Y             &kp U             &kp I             &kp O             &lt_qmk 3 P
+                &td_key_ht ESC Q  &kp W             &lt_qmk 2 E       &kp R             &kp T             &kp Y             &kp U             &kp I             &kp O             &lt_qmk 3 P
                 &mt_qmk LSHFT A   &mt_qmk LCTRL S   &mt_qmk LALT D    &mt_qmk LGUI F    &mt_qmk LS(LGUI) G  &lt_qmk 4 H       &mt_qmk RGUI J    &mt_qmk RALT K    &mt_qmk RCTRL L   &mt_qmk RSHFT SQT
                 &kp Z             &kp X             &lt_qmk 4 C       &lt_qmk 5 V       &lt_qmk 5 B       &lt_qmk 5 N       &lt_qmk 4 M       &kp COMMA         &kp DOT           &td_slash_backslash
                 &to 0             &lt_qmk 7 GRAVE   &cmdtab           &lt_qmk 2 TAB     &mkp LCLK         &lt_qmk 3 MINUS   &td_space_arrows_macro  &kp C_MUTE
