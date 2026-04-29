@@ -3,9 +3,15 @@ manifest:
     - name: klesh
       url-base: https://github.com/klesh
   projects:
+    - name: zmk-ydxc02-driver
+      remote: klesh
+      revision: main
     - name: zmk
       remote: klesh
       revision: main
-      import: app/west.yml
+      import:
+        file: app/west.yml
+        name-blocklist:
+          - zmk-ydxc02-driver
   self:
     path: config
