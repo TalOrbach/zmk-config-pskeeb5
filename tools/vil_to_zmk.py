@@ -212,13 +212,13 @@ MODS = {
 }
 
 TAP_DANCES = {
-    "TD(0)": "&td0",
-    "TD(2)": "&td2",
-    "TD(5)": "&td5",
-    "TD(6)": "&td6",
-    "TD(7)": "&td7",
-    "TD(8)": "&td8",
-    "TD(12)": "&td12",
+    "TD(0)": "&td_space_arrows_macro",
+    "TD(2)": "&td_enter_equal",
+    "TD(5)": "&td_slash_backslash",
+    "TD(6)": "&td_key_ht ESC Q",
+    "TD(7)": "&td_key_ht COMMA MINUS",
+    "TD(8)": "&td_key_ht ESC F1",
+    "TD(12)": "&tog 2",
 }
 
 BASE_ENCODER_FALLBACK = None
@@ -339,6 +339,14 @@ def format_layer(vil: dict, index: int, bindings: list[str]) -> str:
         "hex_layer",
         "mouse_layer",
     ][index]
+    display_names = {
+        0: "Base",
+        2: "Arrows",
+        3: "Numbers",
+        4: "Misc",
+        5: "Function",
+        7: "Mouse",
+    }
     rows = [
         bindings[0:10],
         bindings[10:20],
@@ -346,6 +354,8 @@ def format_layer(vil: dict, index: int, bindings: list[str]) -> str:
         bindings[30:38],
     ]
     out = [f"        {name} {{", "            bindings = <"]
+    if index in display_names:
+        out = [f"        {name} {{", f'            display-name = "{display_names[index]}";', "            bindings = <"]
     for row in rows:
         out.append("                " + "  ".join(f"{b:<16}" for b in row).rstrip())
     out += [
@@ -448,53 +458,25 @@ def render(vil: dict) -> str:
             tap-ms = <20>;
         };
 
-        td0: tap_dance_0 {
+        td_space_arrows_macro: tap_dance_space_arrows_macro {
             compatible = "zmk,behavior-tap-dance";
             #binding-cells = <0>;
             tapping-term-ms = <250>;
             bindings = <&td_layer_ht 2 SPACE>, <&m0>;
         };
 
-        td2: tap_dance_2 {
+        td_enter_equal: tap_dance_enter_equal {
             compatible = "zmk,behavior-tap-dance";
             #binding-cells = <0>;
             tapping-term-ms = <200>;
             bindings = <&kp ENTER>, <&kp EQUAL>;
         };
 
-        td5: tap_dance_5 {
+        td_slash_backslash: tap_dance_slash_backslash {
             compatible = "zmk,behavior-tap-dance";
             #binding-cells = <0>;
             tapping-term-ms = <250>;
             bindings = <&kp FSLH>, <&kp BSLH>;
-        };
-
-        td6: tap_dance_6 {
-            compatible = "zmk,behavior-tap-dance";
-            #binding-cells = <0>;
-            tapping-term-ms = <200>;
-            bindings = <&td_key_ht ESC Q>, <&kp GRAVE>;
-        };
-
-        td7: tap_dance_7 {
-            compatible = "zmk,behavior-tap-dance";
-            #binding-cells = <0>;
-            tapping-term-ms = <200>;
-            bindings = <&td_key_ht COMMA MINUS>;
-        };
-
-        td8: tap_dance_8 {
-            compatible = "zmk,behavior-tap-dance";
-            #binding-cells = <0>;
-            tapping-term-ms = <200>;
-            bindings = <&td_key_ht ESC F1>;
-        };
-
-        td12: tap_dance_12 {
-            compatible = "zmk,behavior-tap-dance";
-            #binding-cells = <0>;
-            tapping-term-ms = <200>;
-            bindings = <&to 2>, <&to 0>;
         };
     };
 
@@ -513,15 +495,6 @@ def render(vil: dict) -> str:
             layers = <7>;
             key-positions = <34 36>;
             bindings = <&mkp MCLK>;
-        };
-    };
-
-    conditional_layers {
-        compatible = "zmk,conditional-layers";
-
-        tri_layer_adjust {
-            if-layers = <1 2>;
-            then-layer = <3>;
         };
     };
 

@@ -86,53 +86,25 @@
             tap-ms = <20>;
         };
 
-        td0: tap_dance_0 {
+        td_space_arrows_macro: tap_dance_space_arrows_macro {
             compatible = "zmk,behavior-tap-dance";
             #binding-cells = <0>;
             tapping-term-ms = <250>;
             bindings = <&td_layer_ht 2 SPACE>, <&m0>;
         };
 
-        td2: tap_dance_2 {
+        td_enter_equal: tap_dance_enter_equal {
             compatible = "zmk,behavior-tap-dance";
             #binding-cells = <0>;
             tapping-term-ms = <200>;
             bindings = <&kp ENTER>, <&kp EQUAL>;
         };
 
-        td5: tap_dance_5 {
+        td_slash_backslash: tap_dance_slash_backslash {
             compatible = "zmk,behavior-tap-dance";
             #binding-cells = <0>;
             tapping-term-ms = <250>;
             bindings = <&kp FSLH>, <&kp BSLH>;
-        };
-
-        td6: tap_dance_6 {
-            compatible = "zmk,behavior-tap-dance";
-            #binding-cells = <0>;
-            tapping-term-ms = <200>;
-            bindings = <&td_key_ht ESC Q>, <&kp GRAVE>;
-        };
-
-        td7: tap_dance_7 {
-            compatible = "zmk,behavior-tap-dance";
-            #binding-cells = <0>;
-            tapping-term-ms = <200>;
-            bindings = <&td_key_ht COMMA MINUS>;
-        };
-
-        td8: tap_dance_8 {
-            compatible = "zmk,behavior-tap-dance";
-            #binding-cells = <0>;
-            tapping-term-ms = <200>;
-            bindings = <&td_key_ht ESC F1>;
-        };
-
-        td12: tap_dance_12 {
-            compatible = "zmk,behavior-tap-dance";
-            #binding-cells = <0>;
-            tapping-term-ms = <200>;
-            bindings = <&to 2>, <&to 0>;
         };
     };
 
@@ -154,15 +126,6 @@
         };
     };
 
-    conditional_layers {
-        compatible = "zmk,conditional-layers";
-
-        tri_layer_adjust {
-            if-layers = <1 2>;
-            then-layer = <3>;
-        };
-    };
-
     macros {
         m0: macro_0 {
             compatible = "zmk,behavior-macro";
@@ -174,11 +137,12 @@
     keymap {
         compatible = "zmk,keymap";
         base_layer {
+            display-name = "Base";
             bindings = <
-                &td6              &kp W             &lt_qmk 2 E           &kp R             &kp T             &kp Y             &kp U             &kp I             &kp O             &lt_qmk 3 P
-                &mt_qmk LSHFT A   &mt_qmk LCTRL S   &mt_qmk LALT D    &mt_qmk LGUI F    &mt_qmk LS(LGUI) G  &lt_qmk 4 H           &mt_qmk RGUI J    &mt_qmk RALT K    &mt_qmk RCTRL L   &mt_qmk RSHFT SQT
-                &kp Z             &kp X             &lt_qmk 4 C           &lt_qmk 5 V           &lt_qmk 5 B           &lt_qmk 5 N           &lt_qmk 4 M           &kp COMMA         &kp DOT           &td5
-                &to 0             &lt_qmk 7 GRAVE       &cmdtab           &lt_qmk 2 TAB         &mkp LCLK         &lt_qmk 3 MINUS       &td0              &kp C_MUTE
+                &td_key_ht ESC Q  &kp W             &lt_qmk 2 E       &kp R             &kp T             &kp Y             &kp U             &kp I             &kp O             &lt_qmk 3 P
+                &mt_qmk LSHFT A   &mt_qmk LCTRL S   &mt_qmk LALT D    &mt_qmk LGUI F    &mt_qmk LS(LGUI) G  &lt_qmk 4 H       &mt_qmk RGUI J    &mt_qmk RALT K    &mt_qmk RCTRL L   &mt_qmk RSHFT SQT
+                &kp Z             &kp X             &lt_qmk 4 C       &lt_qmk 5 V       &lt_qmk 5 B       &lt_qmk 5 N       &lt_qmk 4 M       &kp COMMA         &kp DOT           &td_slash_backslash
+                &to 0             &lt_qmk 7 GRAVE   &cmdtab           &lt_qmk 2 TAB     &mkp LCLK         &lt_qmk 3 MINUS   &td_space_arrows_macro  &kp C_MUTE
             >;
             sensor-bindings = <&rot_msc SCRL_DOWN SCRL_UP &inc_dec_kp C_VOL_UP C_VOL_DN>;
         };
@@ -194,26 +158,29 @@
         };
 
         raise_layer {
+            display-name = "Arrows";
             bindings = <
                 &kp PG_UP         &trans            &trans            &trans            &msc SCRL_UP      &msc SCRL_UP      &kp HOME          &kp UP            &kp END           &kp PG_UP
                 &mt_qmk LSHFT PG_DN  &trans            &trans            &trans            &msc SCRL_DOWN    &msc SCRL_DOWN    &kp LEFT          &kp DOWN          &kp RIGHT         &kp PG_DN
-                &trans            &trans            &trans            &trans            &trans            &td12             &kp LBKT          &kp DOWN          &kp RBKT          &kp LGUI
-                &to 0             &td12             &kp TAB           &td12             &td12             &kp LCTRL         &trans            &trans
+                &trans            &trans            &trans            &trans            &trans            &tog 2            &kp LBKT          &kp DOWN          &kp RBKT          &kp LGUI
+                &to 0             &tog 2            &kp TAB           &tog 2            &tog 2            &kp LCTRL         &trans            &trans
             >;
             sensor-bindings = <&inc_dec_kp C_BRI_UP C_BRI_DN &inc_dec_kp LEFT RIGHT>;
         };
 
         num_layer {
+            display-name = "Numbers";
             bindings = <
                 &kp N1            &kp N2            &kp N3            &kp N4            &kp N5            &kp N6            &kp N7            &kp N8            &kp N9            &kp N0
                 &mt_qmk LSHFT MINUS  &mt_qmk LCTRL EQUAL  &mt_qmk LALT LBKT  &mt_qmk LGUI RBKT  &kp BSPC          &kp KP_MULTIPLY   &kp N4            &kp N5            &kp N6            &kp KP_PLUS
-                &trans            &kp SPACE         &kp MINUS         &kp LS(DOT)       &trans            &kp KP_DIVIDE     &lt_qmk 4 N1          &kp N2            &kp N3            &td7
-                &to 0             &tog 3            &kp DEL           &to 0             &td2              &kp KP_DOT        &kp N0            &trans
+                &trans            &kp SPACE         &kp MINUS         &kp LS(DOT)       &trans            &kp KP_DIVIDE     &lt_qmk 4 N1      &kp N2            &kp N3            &td_key_ht COMMA MINUS
+                &to 0             &tog 3            &kp DEL           &to 0             &td_enter_equal   &kp KP_DOT        &kp N0            &trans
             >;
             sensor-bindings = <&inc_dec_kp C_VOL_DN C_VOL_UP &inc_dec_kp C_VOL_DN C_VOL_UP>;
         };
 
         delete_layer {
+            display-name = "Misc";
             bindings = <
                 &trans            &trans            &trans            &trans            &trans            &trans            &trans            &trans            &kp BSPC          &none
                 &trans            &trans            &trans            &trans            &trans            &trans            &mo 2             &kp BSPC          &trans            &none
@@ -224,8 +191,9 @@
         };
 
         function_layer {
+            display-name = "Function";
             bindings = <
-                &td8              &kp F2            &kp F3            &kp F4            &kp F5            &kp F6            &kp F7            &kp F8            &kp F9            &kp F10
+                &td_key_ht ESC F1  &kp F2            &kp F3            &kp F4            &kp F5            &kp F6            &kp F7            &kp F8            &kp F9            &kp F10
                 &mt_qmk LSHFT F11  &mt_qmk LCTRL F12  &mt_qmk LALT LBKT  &mt_qmk LGUI RBKT  &trans            &trans            &kp BSPC          &kp BSPC          &kp SEMI          &kp LS(SEMI)
                 &kp C_BRI_DN      &kp C_BRI_UP      &trans            &trans            &kp GRAVE         &trans            &kp DEL           &trans            &trans            &kp ENTER
                 &to 0             &kp C_VOL_DN      &kp C_VOL_UP      &kp TAB           &mkp MCLK         &kp ENTER         &kp ENTER         &trans
@@ -244,6 +212,7 @@
         };
 
         mouse_layer {
+            display-name = "Mouse";
             bindings = <
                 &gresc            &trans            &trans            &trans            &trans            &mkp RCLK         &msc SCRL_LEFT    &trans            &trans            &trans
                 &trans            &trans            &trans            &trans            &trans            &trans            &trans            &trans            &trans            &trans
