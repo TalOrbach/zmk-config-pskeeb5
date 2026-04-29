@@ -182,7 +182,7 @@ KEY_ALIASES = {
     "KC_WH_R": "&msc SCRL_RIGHT",
     "FN_MO13": "&mo 1",
     "FN_MO23": "&mo 2",
-    "QK_LAYER_LOCK": "&tog 3",
+    "QK_LAYER_LOCK": "&layer_lock_3",
     "QK_BOOT": "&bootloader",
     "USER00": "&cmdtab",
     "USER05": "&sc_btn 3 MCLK",
@@ -215,10 +215,10 @@ TAP_DANCES = {
     "TD(0)": "&td_space_arrows_macro",
     "TD(2)": "&td_enter_equal",
     "TD(5)": "&td_slash_backslash",
-    "TD(6)": "&td_key_ht ESC Q",
+    "TD(6)": "&q_esc",
     "TD(7)": "&td_key_ht COMMA MINUS",
     "TD(8)": "&td_key_ht ESC F1",
-    "TD(12)": "&tog 2",
+    "TD(12)": "&layer_lock_2",
 }
 
 BASE_ENCODER_FALLBACK = None
@@ -312,6 +312,10 @@ def format_encoder_bindings(vil: dict, index: int) -> str:
         left_behavior, left_arg = encoder_code_to_binding(pair[0])
         right_behavior, right_arg = encoder_code_to_binding(pair[1])
 
+        if index == 3 and encoder_index == 0:
+            left_behavior, left_arg = ("&rot_msc", "SCRL_DOWN")
+            right_behavior, right_arg = ("&rot_msc", "SCRL_UP")
+
         if left_behavior == "trans" and right_behavior == "trans":
             parts.extend(BASE_ENCODER_FALLBACK[encoder_index])
             continue
@@ -388,6 +392,7 @@ def render(vil: dict) -> str:
         mt_qmk: qmk_mod_tap {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
+            display-name = "QMK Mod-Tap";
             flavor = "balanced";
             tapping-term-ms = <175>;
             quick-tap-ms = <120>;
@@ -397,6 +402,7 @@ def render(vil: dict) -> str:
         lt_qmk: qmk_layer_tap {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
+            display-name = "QMK Layer-Tap";
             flavor = "balanced";
             tapping-term-ms = <175>;
             quick-tap-ms = <120>;
@@ -406,6 +412,7 @@ def render(vil: dict) -> str:
         td_layer_ht: tap_dance_layer_hold {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
+            display-name = "Tap Dance Layer Hold";
             flavor = "hold-preferred";
             tapping-term-ms = <1>;
             quick-tap-ms = <0>;
@@ -415,15 +422,27 @@ def render(vil: dict) -> str:
         td_key_ht: tap_dance_key_hold {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
-            flavor = "hold-preferred";
-            tapping-term-ms = <1>;
-            quick-tap-ms = <0>;
+            display-name = "Tap Dance Key Hold";
+            flavor = "balanced";
+            tapping-term-ms = <200>;
+            quick-tap-ms = <120>;
             bindings = <&kp>, <&kp>;
+        };
+
+        q_esc: q_esc_hold_tap {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <0>;
+            display-name = "Q / Escape";
+            flavor = "balanced";
+            tapping-term-ms = <200>;
+            quick-tap-ms = <120>;
+            bindings = <&kp ESC>, <&kp Q>;
         };
 
         cmdtab_ht: cmd_tab_hold_tap {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
+            display-name = "Cmd-Tab Hold-Tap";
             flavor = "balanced";
             tapping-term-ms = <175>;
             quick-tap-ms = <120>;
@@ -433,6 +452,7 @@ def render(vil: dict) -> str:
         cmdtab: cmd_tab_mod_morph {
             compatible = "zmk,behavior-mod-morph";
             #binding-cells = <0>;
+            display-name = "Cmd-Tab";
             bindings = <&cmdtab_ht 3 SPACE>, <&kp TAB>;
             mods = <(MOD_LGUI | MOD_RGUI)>;
             keep-mods = <(MOD_LGUI | MOD_RGUI)>;
@@ -441,6 +461,7 @@ def render(vil: dict) -> str:
         sc_btn: scroll_layer_mouse_button {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
+            display-name = "Scroll Layer Mouse Button";
             flavor = "balanced";
             tapping-term-ms = <175>;
             quick-tap-ms = <120>;
@@ -464,6 +485,7 @@ def render(vil: dict) -> str:
         td_space_arrows_macro: tap_dance_space_arrows_macro {
             compatible = "zmk,behavior-tap-dance";
             #binding-cells = <0>;
+            display-name = "Space / Arrows / Dot-Space";
             tapping-term-ms = <250>;
             bindings = <&td_layer_ht 2 SPACE>, <&m0>;
         };
@@ -471,6 +493,7 @@ def render(vil: dict) -> str:
         td_enter_equal: tap_dance_enter_equal {
             compatible = "zmk,behavior-tap-dance";
             #binding-cells = <0>;
+            display-name = "Enter / Equal";
             tapping-term-ms = <200>;
             bindings = <&kp ENTER>, <&kp EQUAL>;
         };
@@ -478,6 +501,7 @@ def render(vil: dict) -> str:
         td_slash_backslash: tap_dance_slash_backslash {
             compatible = "zmk,behavior-tap-dance";
             #binding-cells = <0>;
+            display-name = "Slash / Backslash";
             tapping-term-ms = <250>;
             bindings = <&kp FSLH>, <&kp BSLH>;
         };
@@ -505,7 +529,22 @@ def render(vil: dict) -> str:
         m0: macro_0 {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
+            display-name = "Dot Space";
             bindings = <&kp KP_DOT>, <&kp SPACE>;
+        };
+
+        layer_lock_2: layer_lock_2 {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            display-name = "Lock Arrows";
+            bindings = <&macro_pause_for_release>, <&to 2>;
+        };
+
+        layer_lock_3: layer_lock_3 {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            display-name = "Lock Numbers";
+            bindings = <&macro_pause_for_release>, <&to 3>;
         };
     };
 

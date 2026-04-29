@@ -13,6 +13,7 @@
         mt_qmk: qmk_mod_tap {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
+            display-name = "QMK Mod-Tap";
             flavor = "balanced";
             tapping-term-ms = <175>;
             quick-tap-ms = <120>;
@@ -22,6 +23,7 @@
         lt_qmk: qmk_layer_tap {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
+            display-name = "QMK Layer-Tap";
             flavor = "balanced";
             tapping-term-ms = <175>;
             quick-tap-ms = <120>;
@@ -31,6 +33,7 @@
         td_layer_ht: tap_dance_layer_hold {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
+            display-name = "Tap Dance Layer Hold";
             flavor = "hold-preferred";
             tapping-term-ms = <1>;
             quick-tap-ms = <0>;
@@ -40,15 +43,27 @@
         td_key_ht: tap_dance_key_hold {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
-            flavor = "hold-preferred";
-            tapping-term-ms = <1>;
-            quick-tap-ms = <0>;
+            display-name = "Tap Dance Key Hold";
+            flavor = "balanced";
+            tapping-term-ms = <200>;
+            quick-tap-ms = <120>;
             bindings = <&kp>, <&kp>;
+        };
+
+        q_esc: q_esc_hold_tap {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <0>;
+            display-name = "Q / Escape";
+            flavor = "balanced";
+            tapping-term-ms = <200>;
+            quick-tap-ms = <120>;
+            bindings = <&kp ESC>, <&kp Q>;
         };
 
         cmdtab_ht: cmd_tab_hold_tap {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
+            display-name = "Cmd-Tab Hold-Tap";
             flavor = "balanced";
             tapping-term-ms = <175>;
             quick-tap-ms = <120>;
@@ -58,6 +73,7 @@
         cmdtab: cmd_tab_mod_morph {
             compatible = "zmk,behavior-mod-morph";
             #binding-cells = <0>;
+            display-name = "Cmd-Tab";
             bindings = <&cmdtab_ht 3 SPACE>, <&kp TAB>;
             mods = <(MOD_LGUI | MOD_RGUI)>;
             keep-mods = <(MOD_LGUI | MOD_RGUI)>;
@@ -66,6 +82,7 @@
         sc_btn: scroll_layer_mouse_button {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
+            display-name = "Scroll Layer Mouse Button";
             flavor = "balanced";
             tapping-term-ms = <175>;
             quick-tap-ms = <120>;
@@ -89,6 +106,7 @@
         td_space_arrows_macro: tap_dance_space_arrows_macro {
             compatible = "zmk,behavior-tap-dance";
             #binding-cells = <0>;
+            display-name = "Space / Arrows / Dot-Space";
             tapping-term-ms = <250>;
             bindings = <&td_layer_ht 2 SPACE>, <&m0>;
         };
@@ -96,6 +114,7 @@
         td_enter_equal: tap_dance_enter_equal {
             compatible = "zmk,behavior-tap-dance";
             #binding-cells = <0>;
+            display-name = "Enter / Equal";
             tapping-term-ms = <200>;
             bindings = <&kp ENTER>, <&kp EQUAL>;
         };
@@ -103,6 +122,7 @@
         td_slash_backslash: tap_dance_slash_backslash {
             compatible = "zmk,behavior-tap-dance";
             #binding-cells = <0>;
+            display-name = "Slash / Backslash";
             tapping-term-ms = <250>;
             bindings = <&kp FSLH>, <&kp BSLH>;
         };
@@ -130,7 +150,22 @@
         m0: macro_0 {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
+            display-name = "Dot Space";
             bindings = <&kp KP_DOT>, <&kp SPACE>;
+        };
+
+        layer_lock_2: layer_lock_2 {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            display-name = "Lock Arrows";
+            bindings = <&macro_pause_for_release>, <&to 2>;
+        };
+
+        layer_lock_3: layer_lock_3 {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            display-name = "Lock Numbers";
+            bindings = <&macro_pause_for_release>, <&to 3>;
         };
     };
 
@@ -139,7 +174,7 @@
         base_layer {
             display-name = "Base";
             bindings = <
-                &td_key_ht ESC Q  &kp W             &lt_qmk 2 E       &kp R             &kp T             &kp Y             &kp U             &kp I             &kp O             &lt_qmk 3 P
+                &q_esc            &kp W             &lt_qmk 2 E       &kp R             &kp T             &kp Y             &kp U             &kp I             &kp O             &lt_qmk 3 P
                 &mt_qmk LSHFT A   &mt_qmk LCTRL S   &mt_qmk LALT D    &mt_qmk LGUI F    &mt_qmk LS(LGUI) G  &lt_qmk 4 H       &mt_qmk RGUI J    &mt_qmk RALT K    &mt_qmk RCTRL L   &mt_qmk RSHFT SQT
                 &kp Z             &kp X             &lt_qmk 4 C       &lt_qmk 5 V       &lt_qmk 5 B       &lt_qmk 5 N       &lt_qmk 4 M       &kp COMMA         &kp DOT           &td_slash_backslash
                 &to 0             &lt_qmk 7 GRAVE   &cmdtab           &lt_qmk 2 TAB     &mkp LCLK         &lt_qmk 3 MINUS   &td_space_arrows_macro  &kp C_MUTE
@@ -162,8 +197,8 @@
             bindings = <
                 &kp PG_UP         &trans            &trans            &trans            &msc SCRL_UP      &msc SCRL_UP      &kp HOME          &kp UP            &kp END           &kp PG_UP
                 &mt_qmk LSHFT PG_DN  &trans            &trans            &trans            &msc SCRL_DOWN    &msc SCRL_DOWN    &kp LEFT          &kp DOWN          &kp RIGHT         &kp PG_DN
-                &trans            &trans            &trans            &trans            &trans            &tog 2            &kp LBKT          &kp DOWN          &kp RBKT          &kp LGUI
-                &to 0             &tog 2            &kp TAB           &tog 2            &tog 2            &kp LCTRL         &trans            &trans
+                &trans            &trans            &trans            &trans            &trans            &layer_lock_2     &kp LBKT          &kp DOWN          &kp RBKT          &kp LGUI
+                &to 0             &layer_lock_2     &kp TAB           &layer_lock_2     &layer_lock_2     &kp LCTRL         &trans            &trans
             >;
             sensor-bindings = <&inc_dec_kp C_BRI_DN C_BRI_UP &inc_dec_kp RIGHT LEFT>;
         };
@@ -174,9 +209,9 @@
                 &kp N1            &kp N2            &kp N3            &kp N4            &kp N5            &kp N6            &kp N7            &kp N8            &kp N9            &kp N0
                 &mt_qmk LSHFT MINUS  &mt_qmk LCTRL EQUAL  &mt_qmk LALT LBKT  &mt_qmk LGUI RBKT  &kp BSPC          &kp KP_MULTIPLY   &kp N4            &kp N5            &kp N6            &kp KP_PLUS
                 &trans            &kp SPACE         &kp MINUS         &kp LS(DOT)       &trans            &kp KP_DIVIDE     &lt_qmk 4 N1      &kp N2            &kp N3            &td_key_ht COMMA MINUS
-                &to 0             &tog 3            &kp DEL           &to 0             &td_enter_equal   &kp KP_DOT        &kp N0            &trans
+                &to 0             &layer_lock_3     &kp DEL           &to 0             &td_enter_equal   &kp KP_DOT        &kp N0            &trans
             >;
-            sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN &inc_dec_kp C_VOL_UP C_VOL_DN>;
+            sensor-bindings = <&rot_msc SCRL_UP SCRL_DOWN &inc_dec_kp C_VOL_UP C_VOL_DN>;
         };
 
         delete_layer {

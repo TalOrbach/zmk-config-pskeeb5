@@ -2,6 +2,8 @@ manifest:
   remotes:
     - name: klesh
       url-base: https://github.com/klesh
+    - name: talor
+      url-base: https://github.com/TalOrbach
   projects:
     - name: zmk
       remote: klesh
@@ -10,5 +12,9 @@ manifest:
         file: app/west.yml
         name-blocklist:
           - zmk-ydxc02-driver
+          - kb_zmk_ps2_mouse_trackpoint_driver
+    - name: kb_zmk_ps2_mouse_trackpoint_driver
+      remote: talor
+      revision: codex/scroll-layer-active
   self:
     path: config
