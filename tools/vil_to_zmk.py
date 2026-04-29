@@ -222,6 +222,7 @@ TAP_DANCES = {
 }
 
 BASE_ENCODER_FALLBACK = None
+REVERSE_ENCODERS = True
 
 
 def kp_arg(binding: str) -> str:
@@ -316,6 +317,8 @@ def format_encoder_bindings(vil: dict, index: int) -> str:
             continue
         if left_behavior != right_behavior:
             raise ValueError(f"mixed encoder behavior on layer {index}: {pair}")
+        if REVERSE_ENCODERS:
+            left_arg, right_arg = right_arg, left_arg
         parts.extend([left_behavior, left_arg, right_arg])
 
     if index == 0:
