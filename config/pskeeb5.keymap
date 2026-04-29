@@ -8,13 +8,6 @@
 #include <dt-bindings/zmk/outputs.h>
 #include <dt-bindings/zmk/modifiers.h>
 
-&mouse_ps2_input_listener {
-    layer-toggle = <7>;
-    layer-toggle-delay-ms = <0>;
-    layer-toggle-timeout-ms = <500>;
-    scroll-layer = <3>;
-};
-
 / {
     behaviors {
         mt_qmk: qmk_mod_tap {
@@ -26,7 +19,7 @@
             bindings = <&kp>, <&kp>;
         };
 
-        lt: qmk_layer_tap {
+        lt_qmk: qmk_layer_tap {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
             flavor = "balanced";
@@ -182,10 +175,10 @@
         compatible = "zmk,keymap";
         base_layer {
             bindings = <
-                &td6              &kp W             &lt 2 E           &kp R             &kp T             &kp Y             &kp U             &kp I             &kp O             &lt 3 P
-                &mt_qmk LSHFT A   &mt_qmk LCTRL S   &mt_qmk LALT D    &mt_qmk LGUI F    &mt_qmk LS(LGUI) G  &lt 4 H           &mt_qmk RGUI J    &mt_qmk RALT K    &mt_qmk RCTRL L   &mt_qmk RSHFT SQT
-                &kp Z             &kp X             &lt 4 C           &lt 5 V           &lt 5 B           &lt 5 N           &lt 4 M           &kp COMMA         &kp DOT           &td5
-                &to 0             &lt 7 GRAVE       &cmdtab           &lt 2 TAB         &mkp LCLK         &lt 3 MINUS       &td0              &kp C_MUTE
+                &td6              &kp W             &lt_qmk 2 E           &kp R             &kp T             &kp Y             &kp U             &kp I             &kp O             &lt_qmk 3 P
+                &mt_qmk LSHFT A   &mt_qmk LCTRL S   &mt_qmk LALT D    &mt_qmk LGUI F    &mt_qmk LS(LGUI) G  &lt_qmk 4 H           &mt_qmk RGUI J    &mt_qmk RALT K    &mt_qmk RCTRL L   &mt_qmk RSHFT SQT
+                &kp Z             &kp X             &lt_qmk 4 C           &lt_qmk 5 V           &lt_qmk 5 B           &lt_qmk 5 N           &lt_qmk 4 M           &kp COMMA         &kp DOT           &td5
+                &to 0             &lt_qmk 7 GRAVE       &cmdtab           &lt_qmk 2 TAB         &mkp LCLK         &lt_qmk 3 MINUS       &td0              &kp C_MUTE
             >;
             sensor-bindings = <&rot_msc SCRL_DOWN SCRL_UP &inc_dec_kp C_VOL_UP C_VOL_DN>;
         };
@@ -214,7 +207,7 @@
             bindings = <
                 &kp N1            &kp N2            &kp N3            &kp N4            &kp N5            &kp N6            &kp N7            &kp N8            &kp N9            &kp N0
                 &mt_qmk LSHFT MINUS  &mt_qmk LCTRL EQUAL  &mt_qmk LALT LBKT  &mt_qmk LGUI RBKT  &kp BSPC          &kp KP_MULTIPLY   &kp N4            &kp N5            &kp N6            &kp KP_PLUS
-                &trans            &kp SPACE         &kp MINUS         &kp LS(DOT)       &trans            &kp KP_DIVIDE     &lt 4 N1          &kp N2            &kp N3            &td7
+                &trans            &kp SPACE         &kp MINUS         &kp LS(DOT)       &trans            &kp KP_DIVIDE     &lt_qmk 4 N1          &kp N2            &kp N3            &td7
                 &to 0             &tog 3            &kp DEL           &to 0             &td2              &kp KP_DOT        &kp N0            &trans
             >;
             sensor-bindings = <&inc_dec_kp C_VOL_DN C_VOL_UP &inc_dec_kp C_VOL_DN C_VOL_UP>;

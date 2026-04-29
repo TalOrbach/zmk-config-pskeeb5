@@ -1,0 +1,6 @@
+&mouse_ps2_input_listener {
+    layer-toggle = <7>;
+    layer-toggle-delay-ms = <0>;
+    layer-toggle-timeout-ms = <500>;
+    scroll-layer = <3>;
+};

@@ -254,7 +254,7 @@ def convert_keycode(code: str | int) -> str:
 
     m = re.fullmatch(r"LT(\d+)\((.+)\)", code)
     if m:
-        return f"&lt {m.group(1)} {kp_arg(convert_keycode(m.group(2)))}"
+        return f"&lt_qmk {m.group(1)} {kp_arg(convert_keycode(m.group(2)))}"
 
     m = re.fullmatch(r"MO\((\d+)\)", code)
     if m:
@@ -370,13 +370,6 @@ def render(vil: dict) -> str:
 #include <dt-bindings/zmk/outputs.h>
 #include <dt-bindings/zmk/modifiers.h>
 
-&mouse_ps2_input_listener {
-    layer-toggle = <7>;
-    layer-toggle-delay-ms = <0>;
-    layer-toggle-timeout-ms = <500>;
-    scroll-layer = <3>;
-};
-
 / {
     behaviors {
         mt_qmk: qmk_mod_tap {
@@ -388,7 +381,7 @@ def render(vil: dict) -> str:
             bindings = <&kp>, <&kp>;
         };
 
-        lt: qmk_layer_tap {
+        lt_qmk: qmk_layer_tap {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
             flavor = "balanced";
