@@ -1,0 +1,112 @@
+// Diagnostic keymap used only to isolate ZMK Studio connection/parsing issues.
+// It intentionally keeps the normal PSKEEB5 layer indices so TrackPoint
+// scroll-layer = <3> and layer-toggle = <7> remain valid.
+
+#include <behaviors.dtsi>
+#include <dt-bindings/zmk/keys.h>
+#include <dt-bindings/zmk/mouse.h>
+#include <dt-bindings/zmk/bt.h>
+#include <dt-bindings/zmk/outputs.h>
+
+/ {
+    behaviors {
+        rot_msc: sensor_rotate_scroll {
+            compatible = "zmk,behavior-sensor-rotate-var";
+            #sensor-binding-cells = <2>;
+            bindings = <&msc>, <&msc>;
+            tap-ms = <20>;
+        };
+    };
+
+    keymap {
+        compatible = "zmk,keymap";
+
+        base_layer {
+            display-name = "Base";
+            bindings = <
+                &kp Q       &kp W       &kp E       &kp R       &kp T       &kp Y       &kp U       &kp I       &kp O       &kp P
+                &kp A       &kp S       &kp D       &kp F       &kp G       &kp H       &kp J       &kp K       &kp L       &kp SQT
+                &kp Z       &kp X       &kp C       &kp V       &kp B       &kp N       &kp M       &kp COMMA   &kp DOT     &kp FSLH
+                &to 0       &out OUT_USB &out OUT_BLE &bt BT_CLR &kp ENTER   &kp SPACE   &mo 2       &kp C_MUTE
+            >;
+            sensor-bindings = <&rot_msc SCRL_UP SCRL_DOWN &inc_dec_kp C_VOL_DN C_VOL_UP>;
+        };
+
+        lower_layer {
+            display-name = "Lower";
+            bindings = <
+                &kp N1      &kp N2      &kp N3      &kp N4      &kp N5      &kp N6      &kp N7      &kp N8      &kp N9      &kp N0
+                &kp F1      &kp F2      &kp F3      &kp F4      &kp F5      &kp LEFT    &kp DOWN    &kp UP      &kp RIGHT   &kp SEMI
+                &kp F6      &kp F7      &kp F8      &kp F9      &kp F10     &kp F11     &kp F12     &kp COMMA   &kp DOT     &kp FSLH
+                &to 0       &out OUT_USB &out OUT_BLE &bt BT_CLR &kp ENTER   &kp SPACE   &to 0       &trans
+            >;
+            sensor-bindings = <&rot_msc SCRL_UP SCRL_DOWN &inc_dec_kp C_VOL_DN C_VOL_UP>;
+        };
+
+        raise_layer {
+            display-name = "Arrows";
+            bindings = <
+                &kp PG_UP   &trans      &trans      &trans      &trans      &trans      &kp HOME    &kp UP      &kp END     &kp PG_UP
+                &kp PG_DN   &trans      &trans      &trans      &trans      &trans      &kp LEFT    &kp DOWN    &kp RIGHT   &kp PG_DN
+                &trans      &trans      &trans      &trans      &trans      &trans      &kp LBKT    &kp DOWN    &kp RBKT    &kp LGUI
+                &to 0       &out OUT_USB &out OUT_BLE &bt BT_CLR &kp ENTER   &kp SPACE   &to 0       &trans
+            >;
+            sensor-bindings = <&rot_msc SCRL_UP SCRL_DOWN &inc_dec_kp C_VOL_DN C_VOL_UP>;
+        };
+
+        num_layer {
+            display-name = "Numbers";
+            bindings = <
+                &kp N1      &kp N2      &kp N3      &kp N4      &kp N5      &kp N6      &kp N7      &kp N8      &kp N9      &kp N0
+                &kp MINUS   &kp EQUAL   &kp LBKT    &kp RBKT    &kp BSPC    &kp KP_MULTIPLY &kp N4   &kp N5      &kp N6      &kp KP_PLUS
+                &trans      &kp SPACE   &kp MINUS   &trans      &trans      &kp KP_DIVIDE   &kp N1   &kp N2      &kp N3      &kp COMMA
+                &to 0       &out OUT_USB &out OUT_BLE &bt BT_CLR &kp ENTER   &kp KP_DOT      &kp N0   &trans
+            >;
+            sensor-bindings = <&rot_msc SCRL_UP SCRL_DOWN &inc_dec_kp C_VOL_DN C_VOL_UP>;
+        };
+
+        delete_layer {
+            display-name = "Misc";
+            bindings = <
+                &trans      &trans      &trans      &trans      &trans      &trans      &trans      &trans      &kp BSPC    &none
+                &trans      &trans      &trans      &trans      &trans      &trans      &mo 2       &kp BSPC    &trans      &none
+                &trans      &trans      &trans      &trans      &trans      &trans      &trans      &kp DEL     &trans      &kp BSPC
+                &to 0       &out OUT_USB &out OUT_BLE &bt BT_CLR &kp ENTER   &kp BSPC    &kp DEL     &trans
+            >;
+            sensor-bindings = <&rot_msc SCRL_UP SCRL_DOWN &inc_dec_kp C_VOL_DN C_VOL_UP>;
+        };
+
+        function_layer {
+            display-name = "Function";
+            bindings = <
+                &kp ESC     &kp F1      &kp F2      &kp F3      &kp F4      &kp F5      &kp F6      &kp F7      &kp F8      &kp F9
+                &kp F10     &kp F11     &kp F12     &trans      &trans      &trans      &kp BSPC    &kp BSPC    &kp SEMI    &kp LS(SEMI)
+                &trans      &trans      &trans      &trans      &kp GRAVE   &trans      &kp DEL     &trans      &trans      &kp ENTER
+                &to 0       &out OUT_USB &out OUT_BLE &bt BT_CLR &kp ENTER   &kp SPACE   &to 0       &trans
+            >;
+            sensor-bindings = <&rot_msc SCRL_UP SCRL_DOWN &inc_dec_kp C_VOL_DN C_VOL_UP>;
+        };
+
+        hex_layer {
+            display-name = "Hex";
+            bindings = <
+                &kp A       &kp B       &kp C       &kp D       &kp E       &kp F       &kp A       &kp B       &kp C       &kp D
+                &kp E       &kp F       &kp A       &kp B       &kp C       &kp D       &kp E       &kp F       &kp A       &kp B
+                &kp C       &kp D       &kp E       &kp F       &kp A       &kp B       &kp C       &kp D       &kp E       &kp F
+                &to 0       &out OUT_USB &out OUT_BLE &bt BT_CLR &kp ENTER   &kp SPACE   &to 0       &trans
+            >;
+            sensor-bindings = <&rot_msc SCRL_UP SCRL_DOWN &inc_dec_kp C_VOL_DN C_VOL_UP>;
+        };
+
+        mouse_layer {
+            display-name = "Mouse";
+            bindings = <
+                &kp ESC     &trans      &trans      &trans      &trans      &mkp RCLK   &msc SCRL_LEFT &trans    &trans      &trans
+                &trans      &trans      &trans      &trans      &trans      &trans      &trans      &trans      &trans      &trans
+                &trans      &trans      &trans      &trans      &trans      &trans      &mkp MCLK   &trans      &trans      &trans
+                &to 0       &out OUT_USB &out OUT_BLE &bt BT_CLR &mkp LCLK   &mkp MCLK   &mkp RCLK   &trans
+            >;
+            sensor-bindings = <&rot_msc SCRL_UP SCRL_DOWN &inc_dec_kp C_VOL_DN C_VOL_UP>;
+        };
+    };
+};
