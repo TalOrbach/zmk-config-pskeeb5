@@ -223,6 +223,7 @@ TAP_DANCES = {
 
 BASE_ENCODER_FALLBACK = None
 REVERSE_ENCODERS = True
+SWAP_ENCODERS = True
 
 
 def kp_arg(binding: str) -> str:
@@ -307,7 +308,7 @@ def format_encoder_bindings(vil: dict, index: int) -> str:
     global BASE_ENCODER_FALLBACK
 
     encoders = vil["encoder_layout"][index]
-    parts = []
+    encoder_parts = []
     for encoder_index, pair in enumerate(encoders):
         left_behavior, left_arg = encoder_code_to_binding(pair[0])
         right_behavior, right_arg = encoder_code_to_binding(pair[1])
@@ -317,18 +318,21 @@ def format_encoder_bindings(vil: dict, index: int) -> str:
             right_behavior, right_arg = ("&rot_msc", "SCRL_UP")
 
         if left_behavior == "trans" and right_behavior == "trans":
-            parts.extend(BASE_ENCODER_FALLBACK[encoder_index])
+            encoder_parts.append(BASE_ENCODER_FALLBACK[encoder_index])
             continue
         if left_behavior != right_behavior:
             raise ValueError(f"mixed encoder behavior on layer {index}: {pair}")
         if REVERSE_ENCODERS:
             left_arg, right_arg = right_arg, left_arg
-        parts.extend([left_behavior, left_arg, right_arg])
+        encoder_parts.append([left_behavior, left_arg, right_arg])
 
     if index == 0:
-        BASE_ENCODER_FALLBACK = [parts[0:3], parts[3:6]]
+        BASE_ENCODER_FALLBACK = [binding[:] for binding in encoder_parts]
 
-    return " ".join(parts)
+    if SWAP_ENCODERS:
+        encoder_parts = list(reversed(encoder_parts))
+
+    return " ".join(part for binding in encoder_parts for part in binding)
 
 
 def layer_bindings(layer: list[list[str | int]]) -> list[str]:
