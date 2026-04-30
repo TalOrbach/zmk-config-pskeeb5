@@ -223,7 +223,12 @@ TAP_DANCES = {
 
 BASE_ENCODER_FALLBACK = None
 REVERSE_ENCODERS = True
-SWAP_ENCODERS = True
+ENCODER_SCROLL_ARGS = {
+    "SCRL_UP": "ROT_MSC_SUP",
+    "SCRL_DOWN": "ROT_MSC_SDN",
+    "SCRL_LEFT": "ROT_MSC_SLT",
+    "SCRL_RIGHT": "ROT_MSC_SRT",
+}
 
 
 def kp_arg(binding: str) -> str:
@@ -298,7 +303,7 @@ def encoder_code_to_binding(code: str) -> tuple[str, str]:
 
     binding = convert_keycode(stripped)
     if binding.startswith("&msc "):
-        return ("&rot_msc", mouse_arg(binding))
+        return ("&rot_msc", ENCODER_SCROLL_ARGS[mouse_arg(binding)])
     if binding.startswith("&mkp "):
         return ("&rot_mkp", mouse_arg(binding))
     return ("&inc_dec_kp", kp_arg(binding))
@@ -314,8 +319,8 @@ def format_encoder_bindings(vil: dict, index: int) -> str:
         right_behavior, right_arg = encoder_code_to_binding(pair[1])
 
         if index == 3 and encoder_index == 0:
-            left_behavior, left_arg = ("&rot_msc", "SCRL_DOWN")
-            right_behavior, right_arg = ("&rot_msc", "SCRL_UP")
+            left_behavior, left_arg = ("&rot_msc", "ROT_MSC_SDN")
+            right_behavior, right_arg = ("&rot_msc", "ROT_MSC_SUP")
 
         if left_behavior == "trans" and right_behavior == "trans":
             encoder_parts.append(BASE_ENCODER_FALLBACK[encoder_index])
@@ -328,9 +333,6 @@ def format_encoder_bindings(vil: dict, index: int) -> str:
 
     if index == 0:
         BASE_ENCODER_FALLBACK = [binding[:] for binding in encoder_parts]
-
-    if SWAP_ENCODERS:
-        encoder_parts = list(reversed(encoder_parts))
 
     return " ".join(part for binding in encoder_parts for part in binding)
 
@@ -390,6 +392,12 @@ def render(vil: dict) -> str:
 #include <dt-bindings/zmk/bt.h>
 #include <dt-bindings/zmk/outputs.h>
 #include <dt-bindings/zmk/modifiers.h>
+
+#define ROT_MSC_VAL 280
+#define ROT_MSC_SUP MOVE_Y(ROT_MSC_VAL)
+#define ROT_MSC_SDN MOVE_Y(-ROT_MSC_VAL)
+#define ROT_MSC_SLT MOVE_X(-ROT_MSC_VAL)
+#define ROT_MSC_SRT MOVE_X(ROT_MSC_VAL)
 
 / {
     behaviors {
