@@ -224,10 +224,10 @@ TAP_DANCES = {
 BASE_ENCODER_FALLBACK = None
 REVERSE_ENCODERS = True
 ENCODER_SCROLL_ARGS = {
-    "SCRL_UP": "ROT_MSC_SUP",
-    "SCRL_DOWN": "ROT_MSC_SDN",
-    "SCRL_LEFT": "ROT_MSC_SLT",
-    "SCRL_RIGHT": "ROT_MSC_SRT",
+    "SCRL_UP": "0x118",
+    "SCRL_DOWN": "0xfee8",
+    "SCRL_LEFT": "0xfee80000",
+    "SCRL_RIGHT": "0x1180000",
 }
 
 
@@ -319,8 +319,8 @@ def format_encoder_bindings(vil: dict, index: int) -> str:
         right_behavior, right_arg = encoder_code_to_binding(pair[1])
 
         if index == 3 and encoder_index == 0:
-            left_behavior, left_arg = ("&rot_msc", "ROT_MSC_SDN")
-            right_behavior, right_arg = ("&rot_msc", "ROT_MSC_SUP")
+            left_behavior, left_arg = ("&rot_msc", "0xfee8")
+            right_behavior, right_arg = ("&rot_msc", "0x118")
 
         if left_behavior == "trans" and right_behavior == "trans":
             encoder_parts.append(BASE_ENCODER_FALLBACK[encoder_index])
@@ -402,12 +402,6 @@ def render(vil: dict) -> str:
 #include <dt-bindings/zmk/bt.h>
 #include <dt-bindings/zmk/outputs.h>
 #include <dt-bindings/zmk/modifiers.h>
-
-#define ROT_MSC_VAL 280
-#define ROT_MSC_SUP MOVE_Y(ROT_MSC_VAL)
-#define ROT_MSC_SDN MOVE_Y(-ROT_MSC_VAL)
-#define ROT_MSC_SLT MOVE_X(-ROT_MSC_VAL)
-#define ROT_MSC_SRT MOVE_X(ROT_MSC_VAL)
 
 / {
     behaviors {

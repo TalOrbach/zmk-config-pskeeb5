@@ -8,12 +8,6 @@
 #include <dt-bindings/zmk/outputs.h>
 #include <dt-bindings/zmk/modifiers.h>
 
-#define ROT_MSC_VAL 280
-#define ROT_MSC_SUP MOVE_Y(ROT_MSC_VAL)
-#define ROT_MSC_SDN MOVE_Y(-ROT_MSC_VAL)
-#define ROT_MSC_SLT MOVE_X(-ROT_MSC_VAL)
-#define ROT_MSC_SRT MOVE_X(ROT_MSC_VAL)
-
 / {
     behaviors {
         mt_qmk: qmk_mod_tap {
@@ -203,7 +197,7 @@
                 &kp Z             &kp X             &lt_qmk 4 C       &lt_qmk 5 V       &lt_qmk 5 B       &lt_qmk 5 N       &lt_qmk 4 M       &kp COMMA         &kp DOT           &td_slash_backslash
                 &to 0             &lt_qmk 7 GRAVE   &cmdtab           &lt_qmk 2 TAB     &mkp LCLK         &lt_qmk 3 MINUS   &td_space_arrows_macro  &kp C_MUTE
             >;
-            sensor-bindings = <&rot_msc ROT_MSC_SUP ROT_MSC_SDN &inc_dec_kp C_VOL_DN C_VOL_UP>;
+            sensor-bindings = <&rot_msc 0x118 0xfee8 &inc_dec_kp C_VOL_DN C_VOL_UP>;
         };
 
         lower_layer {
@@ -235,7 +229,7 @@
                 &trans            &kp SPACE         &kp MINUS         &kp LS(DOT)       &trans            &kp KP_DIVIDE     &lt_qmk 4 N1      &kp N2            &kp N3            &td_key_ht COMMA MINUS
                 &to 0             &layer_lock_3     &kp DEL           &to 0             &td_enter_equal   &kp KP_DOT        &kp N0            &trans
             >;
-            sensor-bindings = <&rot_msc ROT_MSC_SUP ROT_MSC_SDN &inc_dec_kp C_VOL_UP C_VOL_DN>;
+            sensor-bindings = <&rot_msc 0x118 0xfee8 &inc_dec_kp C_VOL_UP C_VOL_DN>;
         };
 
         delete_layer {
@@ -246,7 +240,7 @@
                 &trans            &trans            &trans            &trans            &trans            &trans            &trans            &kp DEL           &trans            &kp BSPC
                 &to 0             &trans            &trans            &kp BSPC          &mkp MCLK         &kp BSPC          &kp DEL           &trans
             >;
-            sensor-bindings = <&rot_msc ROT_MSC_SUP ROT_MSC_SDN &inc_dec_kp C_VOL_DN C_VOL_UP>;
+            sensor-bindings = <&rot_msc 0x118 0xfee8 &inc_dec_kp C_VOL_DN C_VOL_UP>;
         };
 
         function_layer {
@@ -267,7 +261,7 @@
                 &kp B             &kp C             &kp D             &kp E             &kp F             &kp G             &kp H             &kp I             &kp J             &kp K
                 &to 0             &kp N4            &kp N2            &kp N3            &kp N7            &kp N5            &kp N6            &trans
             >;
-            sensor-bindings = <&rot_msc ROT_MSC_SUP ROT_MSC_SDN &inc_dec_kp C_VOL_DN C_VOL_UP>;
+            sensor-bindings = <&rot_msc 0x118 0xfee8 &inc_dec_kp C_VOL_DN C_VOL_UP>;
         };
 
         mouse_layer {
@@ -278,7 +272,7 @@
                 &trans            &trans            &trans            &trans            &trans            &trans            &mkp MCLK         &trans            &trans            &trans
                 &to 0             &trans            &trans            &trans            &trans            &sc_btn 3 MCLK    &mkp RCLK         &trans
             >;
-            sensor-bindings = <&rot_msc ROT_MSC_SUP ROT_MSC_SDN &inc_dec_kp C_VOL_DN C_VOL_UP>;
+            sensor-bindings = <&rot_msc 0x118 0xfee8 &inc_dec_kp C_VOL_DN C_VOL_UP>;
         };
     };
 };
