@@ -360,6 +360,16 @@ def format_layer(vil: dict, index: int, bindings: list[str]) -> str:
         5: "Function",
         7: "Mouse",
     }
+    if index == 2:
+        bindings = [
+            {
+                "&msc SCRL_UP": "&cmd_scroll_up",
+                "&msc SCRL_DOWN": "&cmd_scroll_down",
+                "&msc SCRL_LEFT": "&cmd_scroll_left",
+                "&msc SCRL_RIGHT": "&cmd_scroll_right",
+            }.get(binding, binding)
+            for binding in bindings
+        ]
     rows = [
         bindings[0:10],
         bindings[10:20],
@@ -547,6 +557,34 @@ def render(vil: dict) -> str:
             #binding-cells = <0>;
             display-name = "Lock Numbers";
             bindings = <&macro_pause_for_release>, <&to 3>;
+        };
+
+        cmd_scroll_up: cmd_scroll_up {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            display-name = "Cmd Scroll Up";
+            bindings = <&macro_press &kp LGUI>, <&macro_tap &msc SCRL_UP>, <&macro_release &kp LGUI>;
+        };
+
+        cmd_scroll_down: cmd_scroll_down {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            display-name = "Cmd Scroll Down";
+            bindings = <&macro_press &kp LGUI>, <&macro_tap &msc SCRL_DOWN>, <&macro_release &kp LGUI>;
+        };
+
+        cmd_scroll_left: cmd_scroll_left {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            display-name = "Cmd Scroll Left";
+            bindings = <&macro_press &kp LGUI>, <&macro_tap &msc SCRL_LEFT>, <&macro_release &kp LGUI>;
+        };
+
+        cmd_scroll_right: cmd_scroll_right {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            display-name = "Cmd Scroll Right";
+            bindings = <&macro_press &kp LGUI>, <&macro_tap &msc SCRL_RIGHT>, <&macro_release &kp LGUI>;
         };
     };
 
