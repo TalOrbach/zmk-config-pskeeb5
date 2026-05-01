@@ -29,16 +29,6 @@
             bindings = <&mo>, <&kp>;
         };
 
-        td_layer_ht: tap_dance_layer_hold {
-            compatible = "zmk,behavior-hold-tap";
-            #binding-cells = <2>;
-            display-name = "Tap Dance Layer Hold";
-            flavor = "hold-preferred";
-            tapping-term-ms = <1>;
-            quick-tap-ms = <0>;
-            bindings = <&mo>, <&kp>;
-        };
-
         td_key_ht: tap_dance_key_hold {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
@@ -95,12 +85,22 @@
             tap-ms = <20>;
         };
 
-        td_space_arrows_macro: tap_dance_space_arrows_macro {
+        space_arrows: space_arrows_hold_tap {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            display-name = "Space / Arrows";
+            flavor = "balanced";
+            tapping-term-ms = <175>;
+            quick-tap-ms = <120>;
+            bindings = <&mo>, <&td_space_dotspace>;
+        };
+
+        td_space_dotspace: tap_dance_space_dotspace {
             compatible = "zmk,behavior-tap-dance";
             #binding-cells = <0>;
-            display-name = "Space / Arrows / Dot-Space";
+            display-name = "Space / Dot-Space";
             tapping-term-ms = <175>;
-            bindings = <&td_layer_ht 2 SPACE>, <&m0>;
+            bindings = <&kp SPACE>, <&m0>;
         };
 
         td_enter_equal: tap_dance_enter_equal {
@@ -218,7 +218,7 @@
 &td_key_ht ESC Q  &kp W            &lt_qmk 2 E      &kp R           &kp T               &kp Y        &kp U            &kp I                   &kp O            &lt_qmk 3 P
 &mt_qmk LSHFT A   &mt_qmk LCTRL S  &mt_qmk LALT D   &mt_qmk LGUI F  &mt_qmk LS(LGUI) G  &lt_qmk 4 H  &mt_qmk RGUI J   &mt_qmk RALT K          &mt_qmk RCTRL L  &mt_qmk RSHFT SQT
 &kp Z             &kp X            &lt_qmk 4 C      &lt_qmk 5 V     &lt_qmk 5 B         &lt_qmk 5 N  &lt_qmk 4 M      &kp COMMA               &kp DOT          &td_slash_backslash
-                  &to 0            &lt_qmk 7 GRAVE  &cmdtab         &lt_qmk 2 TAB       &mkp LCLK    &lt_qmk 3 MINUS  &td_space_arrows_macro  &kp C_MUTE
+                  &to 0            &lt_qmk 7 GRAVE  &cmdtab         &lt_qmk 2 TAB       &mkp LCLK    &lt_qmk 3 MINUS  &space_arrows 2 0       &kp C_MUTE
             >;
 
             sensor-bindings = <&rot_msc 0x118 0xfee8 &inc_dec_kp C_VOL_DN C_VOL_UP>;

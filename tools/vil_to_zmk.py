@@ -212,7 +212,7 @@ MODS = {
 }
 
 TAP_DANCES = {
-    "TD(0)": "&td_space_arrows_macro",
+    "TD(0)": "&space_arrows 2 0",
     "TD(2)": "&td_enter_equal",
     "TD(5)": "&td_slash_backslash",
     "TD(6)": "&td_key_ht ESC Q",
@@ -425,16 +425,6 @@ def render(vil: dict) -> str:
             bindings = <&mo>, <&kp>;
         };
 
-        td_layer_ht: tap_dance_layer_hold {
-            compatible = "zmk,behavior-hold-tap";
-            #binding-cells = <2>;
-            display-name = "Tap Dance Layer Hold";
-            flavor = "hold-preferred";
-            tapping-term-ms = <1>;
-            quick-tap-ms = <0>;
-            bindings = <&mo>, <&kp>;
-        };
-
         td_key_ht: tap_dance_key_hold {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
@@ -488,12 +478,22 @@ def render(vil: dict) -> str:
             tap-ms = <20>;
         };
 
-        td_space_arrows_macro: tap_dance_space_arrows_macro {
+        space_arrows: space_arrows_hold_tap {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            display-name = "Space / Arrows";
+            flavor = "balanced";
+            tapping-term-ms = <175>;
+            quick-tap-ms = <120>;
+            bindings = <&mo>, <&td_space_dotspace>;
+        };
+
+        td_space_dotspace: tap_dance_space_dotspace {
             compatible = "zmk,behavior-tap-dance";
             #binding-cells = <0>;
-            display-name = "Space / Arrows / Dot-Space";
-            tapping-term-ms = <250>;
-            bindings = <&td_layer_ht 2 SPACE>, <&m0>;
+            display-name = "Space / Dot-Space";
+            tapping-term-ms = <175>;
+            bindings = <&kp SPACE>, <&m0>;
         };
 
         td_enter_equal: tap_dance_enter_equal {
