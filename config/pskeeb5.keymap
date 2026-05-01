@@ -99,7 +99,7 @@
             compatible = "zmk,behavior-tap-dance";
             #binding-cells = <0>;
             display-name = "Space / Arrows / Dot-Space";
-            tapping-term-ms = <250>;
+            tapping-term-ms = <175>;
             bindings = <&td_layer_ht 2 SPACE>, <&m0>;
         };
 
