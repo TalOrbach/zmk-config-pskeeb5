@@ -492,7 +492,7 @@ def render(vil: dict) -> str:
             compatible = "zmk,behavior-tap-dance";
             #binding-cells = <0>;
             display-name = "Space / Dot-Space";
-            tapping-term-ms = <175>;
+            tapping-term-ms = <250>;
             bindings = <&kp SPACE>, <&m0>;
         };
 
