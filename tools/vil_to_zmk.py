@@ -282,7 +282,8 @@ def convert_keycode(code: str | int) -> str:
     for fn, mod in MOD_TAP.items():
         m = re.fullmatch(rf"{fn}\((.+)\)", code)
         if m:
-            return f"&mt_qmk {mod} {kp_arg(convert_keycode(m.group(1)))}"
+            behavior = "shift_mt_qmk" if mod in {"LSHFT", "RSHFT"} else "mt_qmk"
+            return f"&{behavior} {mod} {kp_arg(convert_keycode(m.group(1)))}"
 
     for qmk_mod, zmk_mod in MODS.items():
         m = re.fullmatch(rf"{qmk_mod}\((.+)\)", code)
@@ -412,6 +413,17 @@ def render(vil: dict) -> str:
             flavor = "balanced";
             tapping-term-ms = <175>;
             quick-tap-ms = <120>;
+            bindings = <&kp>, <&kp>;
+        };
+
+        shift_mt_qmk: qmk_shift_tap {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            display-name = "QMK Shift-Tap";
+            flavor = "balanced";
+            tapping-term-ms = <175>;
+            quick-tap-ms = <120>;
+            hold-while-undecided;
             bindings = <&kp>, <&kp>;
         };
 
