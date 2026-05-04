@@ -19,17 +19,6 @@
             bindings = <&kp>, <&kp>;
         };
 
-        shift_mt_qmk: qmk_shift_tap {
-            compatible = "zmk,behavior-hold-tap";
-            #binding-cells = <2>;
-            display-name = "QMK Shift-Tap";
-            flavor = "balanced";
-            tapping-term-ms = <175>;
-            quick-tap-ms = <120>;
-            hold-while-undecided;
-            bindings = <&kp>, <&kp>;
-        };
-
         lt_qmk: qmk_layer_tap {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
@@ -227,7 +216,7 @@
             display-name = "Base";
             bindings = <
 &td_key_ht ESC Q  &kp W            &lt_qmk 2 E      &kp R           &kp T               &kp Y        &kp U            &kp I                   &kp O            &lt_qmk 3 P
-&shift_mt_qmk LSHFT A  &mt_qmk LCTRL S  &mt_qmk LALT D   &mt_qmk LGUI F  &mt_qmk LS(LGUI) G  &lt_qmk 4 H  &mt_qmk RGUI J   &mt_qmk RALT K          &mt_qmk RCTRL L  &shift_mt_qmk RSHFT SQT
+&mt_qmk LSHFT A   &mt_qmk LCTRL S  &mt_qmk LALT D   &mt_qmk LGUI F  &mt_qmk LS(LGUI) G  &lt_qmk 4 H  &mt_qmk RGUI J   &mt_qmk RALT K          &mt_qmk RCTRL L  &mt_qmk RSHFT SQT
 &kp Z             &kp X            &lt_qmk 4 C      &lt_qmk 5 V     &lt_qmk 5 B         &lt_qmk 5 N  &lt_qmk 4 M      &kp COMMA               &kp DOT          &td_slash_backslash
                   &to 0            &lt_qmk 7 GRAVE  &cmdtab         &lt_qmk 2 TAB       &mkp LCLK    &lt_qmk 3 MINUS  &space_arrows 2 0       &kp C_MUTE
             >;
@@ -250,7 +239,7 @@
             display-name = "Arrows";
             bindings = <
 &kp PG_UP            &trans  &trans         &trans   &cmd_scroll_up    &cmd_scroll_up    &kp HOME   &kp UP    &kp END    &kp PG_UP
-&shift_mt_qmk LSHFT PG_DN  &trans  &trans         &trans   &cmd_scroll_down  &cmd_scroll_down  &kp LEFT   &kp DOWN  &kp RIGHT  &kp PG_DN
+&mt_qmk LSHFT PG_DN  &trans  &trans         &trans   &cmd_scroll_down  &cmd_scroll_down  &kp LEFT   &kp DOWN  &kp RIGHT  &kp PG_DN
 &trans               &trans  &trans         &trans   &trans            &layer_lock_2     &kp LBKT   &kp DOWN  &kp RBKT   &kp LGUI
                      &to 0   &layer_lock_2  &kp TAB  &layer_lock_2     &layer_lock_2     &kp LCTRL  &trans    &trans
             >;
@@ -262,7 +251,7 @@
             display-name = "Numbers";
             bindings = <
 &kp N1               &kp N2               &kp N3             &kp N4             &kp N5    &kp N6           &kp N7        &kp N8  &kp N9  &kp N0
-&shift_mt_qmk LSHFT MINUS  &mt_qmk LCTRL EQUAL  &mt_qmk LALT LBKT  &mt_qmk LGUI RBKT  &kp BSPC  &kp KP_MULTIPLY  &kp N4        &kp N5  &kp N6  &kp KP_PLUS
+&mt_qmk LSHFT MINUS  &mt_qmk LCTRL EQUAL  &mt_qmk LALT LBKT  &mt_qmk LGUI RBKT  &kp BSPC  &kp KP_MULTIPLY  &kp N4        &kp N5  &kp N6  &kp KP_PLUS
 &trans               &kp SPACE            &kp MINUS          &kp LS(DOT)        &trans    &kp KP_DIVIDE    &lt_qmk 4 N1  &kp N2  &kp N3  &td_key_ht COMMA MINUS
                      &to 0                &layer_lock_3      &kp DEL            &to 0     &td_enter_equal  &kp KP_DOT    &kp N0  &trans
             >;
@@ -286,7 +275,7 @@
             display-name = "Function";
             bindings = <
 &td_key_ht ESC F1  &kp F2             &kp F3             &kp F4             &kp F5     &kp F6     &kp F7     &kp F8     &kp F9    &kp F10
-&shift_mt_qmk LSHFT F11  &mt_qmk LCTRL F12  &mt_qmk LALT LBKT  &mt_qmk LGUI RBKT  &trans     &trans     &kp BSPC   &kp BSPC   &kp SEMI  &kp LS(SEMI)
+&mt_qmk LSHFT F11  &mt_qmk LCTRL F12  &mt_qmk LALT LBKT  &mt_qmk LGUI RBKT  &trans     &trans     &kp BSPC   &kp BSPC   &kp SEMI  &kp LS(SEMI)
 &kp C_BRI_DN       &kp C_BRI_UP       &trans             &trans             &kp GRAVE  &trans     &kp DEL    &trans     &trans    &kp ENTER
                    &to 0              &kp C_VOL_DN       &kp C_VOL_UP       &kp TAB    &mkp MCLK  &kp ENTER  &kp ENTER  &trans
             >;
