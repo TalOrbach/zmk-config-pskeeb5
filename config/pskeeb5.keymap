@@ -215,10 +215,10 @@
         base_layer {
             display-name = "Base";
             bindings = <
-&td_key_ht ESC Q  &kp W            &lt_qmk 2 E      &kp R           &kp T               &kp Y        &kp U            &kp I                   &kp O            &lt_qmk 3 P
-&mt_qmk LSHFT A   &mt_qmk LCTRL S  &mt_qmk LALT D   &mt_qmk LGUI F  &mt_qmk LS(LGUI) G  &lt_qmk 4 H  &mt_qmk RGUI J   &mt_qmk RALT K          &mt_qmk RCTRL L  &mt_qmk RSHFT SQT
-&kp Z             &kp X            &lt_qmk 4 C      &lt_qmk 5 V     &lt_qmk 5 B         &lt_qmk 5 N  &lt_qmk 4 M      &kp COMMA               &kp DOT          &td_slash_backslash
-                  &to 0            &lt_qmk 7 GRAVE  &cmdtab         &lt_qmk 2 TAB       &mkp LCLK    &lt_qmk 3 MINUS  &space_arrows 2 0       &kp C_MUTE
+&td_key_ht ESC Q  &kp W            &lt_qmk 2 E      &kp R           &kp T               &kp Y        &kp U            &kp I              &kp O            &lt_qmk 3 P
+&mt_qmk LSHFT A   &mt_qmk LCTRL S  &mt_qmk LALT D   &mt_qmk LGUI F  &mt_qmk LS(LGUI) G  &lt_qmk 4 H  &mt_qmk RGUI J   &mt_qmk RALT K     &mt_qmk RCTRL L  &mt_qmk RSHFT SQT
+&kp Z             &kp X            &lt_qmk 4 C      &lt_qmk 5 V     &lt_qmk 5 B         &lt_qmk 5 N  &lt_qmk 4 M      &kp COMMA          &kp DOT          &kp SLASH
+                  &to 0            &lt_qmk 7 GRAVE  &cmdtab         &lt_qmk 2 TAB       &mkp LCLK    &lt_qmk 3 MINUS  &space_arrows 2 0  &kp C_MUTE
             >;
 
             sensor-bindings = <&rot_msc 0x118 0xfee8 &inc_dec_kp C_VOL_DN C_VOL_UP>;
@@ -276,7 +276,7 @@
             bindings = <
 &td_key_ht ESC F1  &kp F2             &kp F3             &kp F4             &kp F5     &kp F6     &kp F7     &kp F8     &kp F9    &kp F10
 &mt_qmk LSHFT F11  &mt_qmk LCTRL F12  &mt_qmk LALT LBKT  &mt_qmk LGUI RBKT  &trans     &trans     &kp BSPC   &kp BSPC   &kp SEMI  &kp LS(SEMI)
-&kp C_BRI_DN       &kp C_BRI_UP       &trans             &trans             &kp GRAVE  &trans     &kp DEL    &trans     &trans    &kp ENTER
+&kp C_BRI_DN       &kp C_BRI_UP       &trans             &trans             &kp GRAVE  &trans     &kp DEL    &trans     &kp DOT   &kp BACKSLASH
                    &to 0              &kp C_VOL_DN       &kp C_VOL_UP       &kp TAB    &mkp MCLK  &kp ENTER  &kp ENTER  &trans
             >;
 
@@ -297,10 +297,10 @@
         mouse_layer {
             display-name = "Mouse";
             bindings = <
-&gresc  &trans  &trans  &trans  &trans  &mkp RCLK  &msc SCRL_LEFT  &trans          &trans  &trans
-&trans  &trans  &trans  &trans  &trans  &trans     &trans          &trans          &trans  &trans
-&trans  &trans  &trans  &trans  &trans  &trans     &mkp MCLK       &trans          &trans  &trans
-        &to 0   &trans  &trans  &trans  &trans     &sc_btn 3 MCLK  &sc_btn 2 RCLK  &trans
+&gresc  &trans  &trans  &trans  &trans       &mkp RCLK  &msc SCRL_LEFT  &trans          &trans  &trans
+&trans  &trans  &trans  &trans  &bootloader  &trans     &trans          &trans          &trans  &trans
+&trans  &trans  &trans  &trans  &trans       &trans     &mkp MCLK       &trans          &trans  &trans
+        &to 0   &trans  &trans  &trans       &trans     &sc_btn 3 MCLK  &sc_btn 2 RCLK  &trans
             >;
 
             sensor-bindings = <&rot_msc 0x118 0xfee8 &inc_dec_kp C_VOL_DN C_VOL_UP>;
