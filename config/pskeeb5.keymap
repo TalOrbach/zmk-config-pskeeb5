@@ -218,7 +218,7 @@
 &td_key_ht ESC Q  &kp W            &lt_qmk 2 E     &kp R           &kp T               &kp Y        &kp U            &kp I              &kp O            &lt_qmk 3 P
 &mt_qmk LSHFT A   &mt_qmk LCTRL S  &mt_qmk LALT D  &mt_qmk LGUI F  &mt_qmk LS(LGUI) G  &lt_qmk 4 H  &mt_qmk RGUI J   &mt_qmk RALT K     &mt_qmk RCTRL L  &mt_qmk RSHFT SQT
 &kp Z             &kp X            &lt_qmk 4 C     &lt_qmk 5 V     &lt_qmk 4 B         &kp N        &lt_qmk 4 M      &kp COMMA          &kp DOT          &kp SLASH
-                  &to 0            &lt_qmk 7 TAB   &cmdtab         &lt_qmk 2 TAB       &mkp LCLK    &lt_qmk 3 MINUS  &space_arrows 2 0  &kp C_MUTE
+                  &to 0            &lt_qmk 7 TAB   &cmdtab         &lt_qmk 2 GRAVE     &mkp LCLK    &lt_qmk 3 MINUS  &space_arrows 2 0  &kp C_MUTE
             >;
 
             sensor-bindings = <&rot_msc 0x118 0xfee8 &inc_dec_kp C_VOL_DN C_VOL_UP>;
