@@ -120,7 +120,19 @@
         };
     };
 
-    combos { compatible = "zmk,combos"; };
+    combos {
+        compatible = "zmk,combos";
+
+        LBoot {
+            bindings = <&bootloader>;
+            key-positions = <32 12 1 0>;
+        };
+
+        RBoot {
+            bindings = <&bootloader>;
+            key-positions = <9 8 17 35>;
+        };
+    };
 
     macros {
         m0: macro_0 {
