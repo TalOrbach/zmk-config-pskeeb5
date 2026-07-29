@@ -222,10 +222,10 @@
         raise_layer {
             display-name = "Arrows";
             bindings = <
-&kp PG_UP            &trans  &trans         &trans   &cmd_scroll_up    &cmd_scroll_up    &kp HOME   &kp UP    &kp END    &kp PG_UP
-&mt_qmk LSHFT PG_DN  &trans  &trans         &trans   &cmd_scroll_down  &cmd_scroll_down  &kp LEFT   &kp DOWN  &kp RIGHT  &kp PG_DN
-&trans               &trans  &trans         &trans   &trans            &layer_lock_2     &kp LBKT   &kp DOWN  &kp RBKT   &kp LGUI
-                     &to 0   &layer_lock_2  &kp TAB  &layer_lock_2     &layer_lock_2     &kp LCTRL  &trans    &trans
+&kp PG_UP            &trans  &trans         &kp PAGE_UP                 &cmd_scroll_up    &cmd_scroll_up    &kp HOME   &kp UP    &kp END    &kp PG_UP
+&mt_qmk LSHFT PG_DN  &trans  &trans         &mt_qmk LEFT_GUI PAGE_DOWN  &cmd_scroll_down  &cmd_scroll_down  &kp LEFT   &kp DOWN  &kp RIGHT  &kp PG_DN
+&trans               &trans  &trans         &trans                      &trans            &layer_lock_2     &kp LBKT   &kp DOWN  &kp RBKT   &kp LGUI
+                     &to 0   &layer_lock_2  &kp TAB                     &layer_lock_2     &layer_lock_2     &kp LCTRL  &trans    &trans
             >;
 
             sensor-bindings = <&inc_dec_kp C_BRI_DN C_BRI_UP &inc_dec_kp RIGHT LEFT>;
@@ -281,10 +281,10 @@
         mouse_layer {
             display-name = "Mouse";
             bindings = <
-&kp PG_UP  &trans  &trans  &trans  &msc SCRL_UP    &mkp RCLK  &trans          &trans          &trans  &trans
-&kp PG_DN  &trans  &trans  &trans  &msc SCRL_DOWN  &trans     &trans          &trans          &trans  &trans
-&trans     &trans  &trans  &trans  &trans          &trans     &mkp MCLK       &trans          &trans  &trans
-           &to 0   &trans  &trans  &trans          &trans     &sc_btn 3 MCLK  &sc_btn 2 RCLK  &trans
+&kp PG_UP                     &trans  &trans  &trans  &msc SCRL_UP    &mkp RCLK  &trans          &trans          &trans  &trans
+&mt_qmk LEFT_SHIFT PAGE_DOWN  &trans  &trans  &trans  &msc SCRL_DOWN  &trans     &trans          &trans          &trans  &trans
+&trans                        &trans  &trans  &trans  &trans          &trans     &mkp MCLK       &trans          &trans  &trans
+                              &to 0   &trans  &trans  &trans          &trans     &sc_btn 3 MCLK  &sc_btn 2 RCLK  &trans
             >;
 
             sensor-bindings = <&rot_msc 0x118 0xfee8 &inc_dec_kp C_VOL_DN C_VOL_UP>;
